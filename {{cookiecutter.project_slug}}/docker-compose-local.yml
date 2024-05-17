@@ -1,0 +1,9 @@
+services:
+  {{ cookiecutter.project_slug }}:
+    image: simcore/services/comp/{{ cookiecutter.project_slug }}:{{ cookiecutter.version }}
+    environment:
+      - INPUT_FOLDER=/tmp/inputs
+      - OUTPUT_FOLDER=/tmp/outputs
+    volumes:
+      - ${PWD}/validation/input:/tmp/inputs
+      - ${PWD}/validation/output:/tmp/outputs

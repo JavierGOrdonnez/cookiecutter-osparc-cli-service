@@ -1,0 +1,20 @@
+variables:
+  CI_SERVICE_INTEGRATION_LIBRARY: itisfoundation/ci-service-integration-library:v1.0.4
+
+stages:
+  - build
+
+build-images:
+  stage: build
+  image: $CI_SERVICE_INTEGRATION_LIBRARY
+  tags:
+    - DOCKER
+    - XSERVER
+    - LINUX
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "push"
+  script:
+    # CI just checks if build works
+    - ooil --version
+    - ooil compose
+    - docker compose build

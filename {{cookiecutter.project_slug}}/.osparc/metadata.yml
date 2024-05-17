@@ -1,0 +1,35 @@
+name: {{ cookiecutter.project_name }}
+key: simcore/services/comp/{{ cookiecutter.project_name.lower().replace(' ', '-') }}
+type: computational
+integration-version: 1.0.0
+version: {{ cookiecutter.version }}
+description: {{ cookiecutter.project_short_description }}
+contact: {{ cookiecutter.contact_email }}
+thumbnail: https://github.com/ITISFoundation/osparc-assets/blob/cb43207b6be2f4311c93cd963538d5718b41a023/assets/default-thumbnail-cookiecutter-osparc-service.png?raw=true
+authors:
+  - name: {{ cookiecutter.author_name }}
+    email: {{ cookiecutter.author_email }}
+    affiliation: {{ cookiecutter.author_affiliation }}
+inputs:
+  input_1:
+    displayOrder: 1
+    label: Command
+    description: Command the will be executed at service startup
+    defaultValue: echo "Hello from {{ cookiecutter.project_name }}"
+    type: ref_contentSchema
+    contentSchema: 
+      title: Command
+      type: string
+  input_2:
+    displayOrder: 2
+    label: Input file(s)
+    description: Optional - connect a File Picker with one file or a .zip containing more files
+    type: data:*/*
+outputs:
+  output_1:
+    displayOrder: 1
+    label: Output data
+    description: The data produced by the command
+    type: data:*/*
+    fileToKeyMap:
+      output_data.zip: output_1

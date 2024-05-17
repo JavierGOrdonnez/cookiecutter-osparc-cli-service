@@ -1,0 +1,23 @@
+coverage
+cookiecutter
+coverage
+
+# linter
+pylint
+rope
+autopep8
+
+# testing
+pytest
+pytest-cookies
+pytest-cov
+pytest-instafail
+pytest-mock
+pytest-sugar
+
+# package management
+bump2version
+
+
+# used in cookiecutter.json
+jinja2_time 

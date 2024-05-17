@@ -1,0 +1,36 @@
+name: Bake cookies, build and run images
+
+env:
+  DOCKER_BUILDX: "0.3.1"
+
+on: ["push", "pull_request"]
+
+jobs:
+  cookiecutter-jupyterlab-osparc:
+    name: testing cookiecutter jupyterlab
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        python: ["3.10"]
+        os: ["ubuntu-20.04"]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v2
+        with:
+          version: v0.13.1
+          driver: docker-container
+      - name: setup python environment
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python }}
+          cache: "pip"
+          cache-dependency-path: "**/requirements*.txt"
+      - name: set dev environs
+        run: make devenv
+      - name: test cookiecutter build images
+        run: |
+          source .venv/bin/activate
+          pip install -r requirements-dev.txt
+          make tests

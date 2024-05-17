@@ -1,0 +1,19 @@
+{
+  "author_name": "Your full name",
+  "author_email": "Your address email (eq. you@example.com)",
+  "author_affiliation": "University of Anywhere, Department of something",
+  "contact_email": "{{ cookiecutter.author_email }}",
+  "project_name": "Name of the project",
+  "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '-') }}",
+  "project_short_description": "{{ cookiecutter.project_name }}",
+  "git_repo": [
+    "local",
+    "github",
+    "gitlab"
+  ],
+  "release_date": "{% now 'utc', '%Y' %}",
+  "version": "0.1.0",
+  "_extensions": [
+    "jinja2_time.TimeExtension"
+  ]
+}
