@@ -34,6 +34,7 @@ devenv: .venv  ## create a python virtual environment with tools to dev, run and
 
 # Upgrades and tracks python packages versions installed in the service ---------------------------------
 requirements: devenv ## runs pip-tools to build requirements.txt (installed in the local virtualenv)
+	@echo "If pip-compile not found, make sure you have activated the virtual environment by running 'source $</bin/activate'"
 	# freezes requirements
 	pip-compile requirements-dev.in --resolver=backtracking --output-file requirements-dev.txt
 	pip install -r requirements-dev.txt
